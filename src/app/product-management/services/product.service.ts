@@ -8,10 +8,11 @@ import {
   ApiResponse,
   UpdateProduct
 } from '../interfaces/product.interface';
+import { environment } from 'src/app/enviroments/enviroments';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
-  private readonly url = 'https://localhost:7272/api/Products';
+  private readonly url = environment.apiUrl;
 
   constructor(private readonly http: HttpClient) {}
 
