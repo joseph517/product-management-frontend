@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Nombre del producto <span class="text-danger">*</span></label>
+                    <input type="text" id="name" class="form-control" formControlName="name"
+                        [ngClass]="{'is-invalid': shouldShowError('name')}" />
+                    <div *ngIf="shouldShowError('name')" class="invalid-feedback">
+                        <div *ngFor="let error of getFieldErrors('name')">
+                            {{ error }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="price">Precio <span class="text-danger">*</span></label>
+                    <input type="number" id="price" class="form-control" formControlName="price"
+                        [ngClass]="{'is-invalid': shouldShowError('price')}" step="0.01" min="0" />
+                    <div *ngIf="shouldShowError('price')" class="invalid-feedback">
+                        <div *ngFor="let error of getFieldErrors('price')">
+                            {{ error }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="description">Descripción</label>
+            <textarea id="description" class="form-control" formControlName="description"
+                [ngClass]="{'is-invalid': shouldShowError('description')}" rows="3" maxlength="255"></textarea>
+            <div *ngIf="shouldShowError('description')" class="invalid-feedback">
+                <div *ngFor="let error of getFieldErrors('description')">
+                    {{ error }}
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="productForm.invalid || loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+            {{ loading ? 'Creando...' : 'Crear producto' }}
+        </button>
+    </form>
+
+    <p-toast></p-toast>
+
+</div>

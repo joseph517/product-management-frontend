@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nombre</label>
+    <input id="name" type="text" class="form-control" formControlName="name" />
+    <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-danger">
+      El nombre es requerido.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Descripción</label>
+    <textarea id="description" class="form-control" formControlName="description"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Precio</label>
+    <input id="price" type="number" class="form-control" formControlName="price" />
+    <div *ngIf="form.get('price')?.invalid && form.get('price')?.touched" class="text-danger">
+      El precio debe ser mayor a 0.
+    </div>
+  </div>
+
+  <div class="text-end">
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Actualizar</button>
+  </div>
+</form>
