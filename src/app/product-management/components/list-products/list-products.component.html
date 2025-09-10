@@ -18,8 +18,10 @@
         <td>{{ product.price | currency }}</td>
         <td>{{ product.createdAt | date: 'short' }}</td>
         <td class="text-center">
-          <button class="btn btn-primary me-2" (click)="prepareUpdate(product.id)">Editar</button>
-          <button class="btn btn-danger" (click)="prepareDelete($event, product.id, product.name)">Eliminar</button>
+          <p-button icon="pi pi-pencil" severity="info" size="small" [text]="true" class="me-2"
+            (click)="prepareUpdate(product.id)"></p-button>
+          <p-button icon="pi pi-trash" severity="danger" size="small" [text]="true"
+            (click)="prepareDelete($event, product.id, product.name)"></p-button>
         </td>
       </tr>
     </tbody>
@@ -61,14 +63,10 @@
     </div>
   </div>
 
-  <app-dialog
-    class="card flex justify-content-center gap-2"
-    [productName]="selectedProductName" 
+  <app-dialog class="card flex justify-content-center gap-2" [productName]="selectedProductName"
     (confirmed)="onDeleteConfirmed()">
   </app-dialog>
 
-  <app-update-dialog
-    class="card flex justify-content-center gap-2"
-  ></app-update-dialog>
+  <app-update-dialog class="card flex justify-content-center gap-2"></app-update-dialog>
 
 </div>
